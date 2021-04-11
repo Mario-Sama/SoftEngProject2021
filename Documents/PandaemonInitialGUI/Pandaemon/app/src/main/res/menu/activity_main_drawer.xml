@@ -5,23 +5,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/destination"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Seach for a Destination" />
-        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_send"
-            android:title="Navigation" />
+            android:title="Seach for a Destination" />
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Appointment" />
         <item
-            android:id="@+id/news"
+            android:id="@+id/nav_home2"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Pandemic News" />
         <item
-            android:id="@+id/guidelines"
+            android:id="@+id/nav_home3"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Pandemic Guidelines" />
         <item

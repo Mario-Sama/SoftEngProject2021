@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
+
+
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -12,15 +15,16 @@ class MainActivity : AppCompatActivity() {
 
         val uploadbutton = findViewById<Button>(R.id.uploadbutton)
         uploadbutton.setOnClickListener {
-            val intent = Intent(  this, UploadDataWindow::class.java)
+            val intent = Intent(this, UploadDataWindow::class.java)
             startActivity(intent)
+        }
 
             val staysafebutton = findViewById<Button>(R.id.staysafebutton)
             staysafebutton.setOnClickListener {
-                val intent2 = Intent(this, UploadDataWindow::class.java)
-                startActivity(intent2)
+                val intent = Intent(this, Drawer::class.java)
+                startActivity(intent)
             }
-        }
+
 
     }
 }
