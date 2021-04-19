@@ -1,9 +1,7 @@
 package com.example.pandaemon
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Button
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -15,7 +13,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.pandaemon.ui.slideshow.SlideshowFragment
 
 class Drawer : AppCompatActivity() {
 
@@ -26,19 +23,6 @@ class Drawer : AppCompatActivity() {
         setContentView(R.layout.activity_drawer)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-
-        val nav_home = findViewById<Button>(R.id.nav_home)
-        nav_home.setOnClickListener {
-          val intent = Intent(this, PandemicNews::class.java)
-        startActivity(intent)
-    }
-
-       // val actionBar = supportActionBar
-
-        //actionBar!!.title = "Pandaemon Hub"
-        //actionBar.setDisplayHomeAsUpEnabled(true)
-
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -52,8 +36,8 @@ class Drawer : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
+                R.id.nav_map, R.id.nav_destination, R.id.nav_appointment, R.id.nav_news,
+                R.id.nav_guidelines), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
