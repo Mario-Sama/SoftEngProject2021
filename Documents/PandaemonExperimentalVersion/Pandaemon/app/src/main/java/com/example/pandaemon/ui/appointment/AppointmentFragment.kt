@@ -9,18 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pandaemon.R
+import kotlinx.android.synthetic.main.fragment_appointment.*
 
 class AppointmentFragment : Fragment() {
 
-    private lateinit var appointmentViewModel: AppointmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        appointmentViewModel =
-            ViewModelProvider(this).get(AppointmentViewModel::class.java)
+        var appointmentViewModel = ViewModelProvider(this).get(AppointmentViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_appointment, container, false)
         val textView: TextView = root.findViewById(R.id.text_appointment)
         appointmentViewModel.text.observe(viewLifecycleOwner, Observer {
@@ -28,4 +27,7 @@ class AppointmentFragment : Fragment() {
         })
         return root
     }
+    //override fun onBackPressed() {
+        //if(wb_webView.canGoBack()) wb_webView.goBack() else super.onBackPressed()
+    //}
 }
