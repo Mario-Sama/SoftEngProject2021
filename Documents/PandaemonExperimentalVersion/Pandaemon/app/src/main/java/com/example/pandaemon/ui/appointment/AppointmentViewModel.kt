@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class AppointmentViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is appointment Fragment"
+        value = "Υπολογίζουμε προτιμέστερη Νοσοκομειακή Μονάδα βάσει της Τοποθεσίας σου . . ."
     }
     val text: LiveData<String> = _text
 }
