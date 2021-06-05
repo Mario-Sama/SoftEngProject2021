@@ -51,7 +51,7 @@ abstract class GuidelinesFragment : Fragment() {
         wb_webView2.webViewClient = WebViewClient()
 
         wb_webView2.apply {
-            loadUrl("https://covid19.gov.gr/")
+            loadUrl(pageurl)
             settings.javaScriptEnabled = true
             settings.safeBrowsingEnabled = true
         }
