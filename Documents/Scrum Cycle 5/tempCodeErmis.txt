@@ -1,0 +1,81 @@
+public class Route
+{
+  float startLongitute;
+  float startLatitude;
+  float destinationLongitute;
+  float destinationLatitude;
+  enum transportMeans
+  {
+    MMM,
+    bikeOrByFoot,
+    car
+  }
+  int startTime;
+  int endTime;
+  String MMMInfo;
+  
+  public int calculateTimetable (int startingTime, float[] routePoints)
+  {
+    System.out.println ("Timetable");
+    int timetable = 10;
+    return timetable;
+  }
+  public float[] MMMRoute (String MMMInfo, float startLatitude,
+			   float startLongitute, float destinationLatitude,
+			   float destinationLongitute)
+  {
+    System.out.println ("MMMRoute");
+    float[] route = {10, 20, 30, 40};
+    return route;
+  }
+  public float[] concatenateRoute (float[]routePoints1, float[]routePoints2)
+  {
+    int size1 = routePoints1.length;
+    int size2 = routePoints2.length;
+    float[] route = new float[size1 + size2];
+
+    System.arraycopy (routePoints1, 0, route, 0, size1);
+    System.arraycopy (routePoints2, 0, route, size1, size2);
+    System.out.println ("concatenateRoute");
+    return route;
+  }
+  public void navigate (float locationLatitude, float locationLongtitude,
+			float destinationLongitute, float destinationLatitude)
+  {
+    System.out.println ("navigate");
+  }
+}
+public class SafeRoute extends Route {
+    public float[] calculate (float startLatitude, float startLongitute, float destinationLatitude, float destinationLongitute, String transportMeans)
+  {
+    float[] route = { 10, 20, 30, 40 };
+    System.out.println ("route");
+    return route;
+  }
+}public class FastRoute extends Route {
+    float [] shortRoutePoints;
+}
+public class SafetyReview {
+    String placeId;
+    String username;
+    int reviewTime;
+    String reviewText;
+    int staffGrade;
+    int equipmentGrade;
+    int overallGrade;
+    public void selectReviews(String location) {
+        
+    }
+    public void getMostUpvoted(String location) {
+
+    }
+    public void getAllReviews(String location) {
+        
+    }
+    public void upvote() {
+ 
+    }
+    public void downvote() {
+
+    }
+}
