@@ -34,4 +34,19 @@
         android:name="com.example.pandaemon.ui.guidelines.GuidelinesFragment"
         android:label="@string/menu_guidelines"
         tools:layout="@layout/fragment_guidelines" />
+    <fragment
+        android:id="@+id/appointmentviaApp"
+        android:name="com.example.pandaemon.AppointmentviaApp"
+        android:label="fragment_appointmentvia_app"
+        tools:layout="@layout/fragment_appointmentvia_app" />
+    <fragment
+        android:id="@+id/vaccinationAppointment"
+        android:name="com.example.pandaemon.VaccinationAppointment"
+        android:label="fragment_vaccination_appointment"
+        tools:layout="@layout/fragment_vaccination_appointment" />
+    <fragment
+        android:id="@+id/appointmentviaPhone"
+        android:name="com.example.pandaemon.AppointmentviaPhone"
+        android:label="fragment_appointmentvia_phone"
+        tools:layout="@layout/fragment_appointmentvia_phone" />
 </navigation>
