@@ -52,11 +52,10 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
 
     }
 
-    }
-
-
-
-
-
-
 }
+
+
+
+
+
+
