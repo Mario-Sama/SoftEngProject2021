@@ -17,7 +17,7 @@ abstract class NewsFragment : Fragment() {
 
 
 
-    abstract fun notify( )
+    //abstract fun notify( )
 
 
 
