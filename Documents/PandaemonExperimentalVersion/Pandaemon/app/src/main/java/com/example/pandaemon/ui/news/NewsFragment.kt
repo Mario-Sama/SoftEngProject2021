@@ -10,9 +10,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pandaemon.R
 
-class NewsFragment : Fragment() {
+abstract class NewsFragment : Fragment() {
 
     private lateinit var newsViewModel: NewsViewModel
+
+
+
+
+    abstract fun notify( )
+
+
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,4 +38,7 @@ class NewsFragment : Fragment() {
         })
         return root
     }
+
+
+
 }
