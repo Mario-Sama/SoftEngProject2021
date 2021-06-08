@@ -68,4 +68,9 @@
             android:id="@+id/action_appointmentSuggestionsFragment_to_appointmentviaPhone"
             app:destination="@id/appointmentviaPhone" />
     </fragment>
+    <fragment
+        android:id="@+id/selectVehicleInterfaceFragment"
+        android:name="com.example.pandaemon.selectVehicleInterfaceFragment"
+        android:label="fragment_select_vehicle_interface"
+        tools:layout="@layout/fragment_select_vehicle_interface" />
 </navigation>
