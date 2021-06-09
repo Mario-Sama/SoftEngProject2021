@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.pandaemon.GuidelinesSoloInterface
 
 
 
@@ -25,12 +26,24 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-
-        val deletebtn = findViewById<Button>(R.id.deleteit)
-        deletebtn.setOnClickListener {
-            val intent = Intent(this, GuidelinesSoloInterface::class.java)
+/*
+        Run this for alternating between Drawer and SaftetyReview Interface
+        val staysafebutton = findViewById<Button>(R.id.staysafebutton)
+        staysafebutton.setOnClickListener {
+            val intent = Intent(this, SafetyReviewInterface::class.java)
             startActivity(intent)
         }
+*/
+
+        val delete = findViewById<Button>(R.id.deleteit)
+       delete.setOnClickListener {
+            val intent = Intent(this, GuidelinesSoloInterface::class.java)
+            startActivity(intent)
+       }
+
+
+
+
 
     }
 }

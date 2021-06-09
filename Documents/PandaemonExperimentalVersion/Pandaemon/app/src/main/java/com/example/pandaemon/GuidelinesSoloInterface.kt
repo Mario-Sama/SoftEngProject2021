@@ -7,6 +7,7 @@ import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
 import com.example.pandaemon.R
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_google_form.*
 import kotlinx.android.synthetic.main.activity_guidelines_solo_interface.*
 
 class GuidelinesSoloInterface : AppCompatActivity() {
@@ -28,5 +29,8 @@ class GuidelinesSoloInterface : AppCompatActivity() {
             settings.safeBrowsingEnabled = true
         }
 
+    }
+    override fun onBackPressed() {
+        if(wb_webView.canGoBack()) wb_webView.goBack() else super.onBackPressed()
     }
 }

@@ -1,4 +1,4 @@
- package com.example.ermistest
+package com.example.pandaemon
 
 import android.content.Intent
 import android.os.Build
@@ -12,11 +12,11 @@ import androidx.annotation.RequiresApi
 import java.time.LocalDate
 import java.time.LocalTime
 
- class MainActivity : AppCompatActivity() {
+class SafetyReviewInterface : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_safety_review_interface)
 
         val safetyReview = findViewById<EditText>(R.id.safetyReviewText)
         val uploadSafetyReview = findViewById<Button>(R.id.buttonUploadSafety)
@@ -61,13 +61,13 @@ import java.time.LocalTime
         }
     }
 }
- enum class transport
- {
-     MMM,
-     bikeOrByFoot,
-     car,
-     none
- }
+enum class transport
+{
+    MMM,
+    bikeOrByFoot,
+    car,
+    none
+}
 open abstract class Route() {
     val startLongitute : Float? = null
     val startLatitude : Float? = null
