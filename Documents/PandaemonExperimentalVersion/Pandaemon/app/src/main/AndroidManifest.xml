@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pandaemon">
-        <activity android:name=".routeOptions"></activity>
+        <activity android:name=".routeOptions" />
         <activity android:name=".AppointmentsSuggestions" />
         <activity android:name=".ui.GoogleForm" />
         <!--

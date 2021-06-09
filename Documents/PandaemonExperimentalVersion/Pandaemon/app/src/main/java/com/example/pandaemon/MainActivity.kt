@@ -26,5 +26,11 @@ class MainActivity : AppCompatActivity() {
             }
 
 
+        val deletebtn = findViewById<Button>(R.id.deleteit)
+        deletebtn.setOnClickListener {
+            val intent = Intent(this, GuidelinesSoloInterface::class.java)
+            startActivity(intent)
+        }
+
     }
 }
