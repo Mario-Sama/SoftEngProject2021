@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
+import com.example.pandaemon.R
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_guidelines_solo_interface.*
 

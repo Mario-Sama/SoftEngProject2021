@@ -65,8 +65,6 @@ abstract class GuidelinesFragment : Fragment() {
     }
 
 
-
-
     //try 2
 /*
     @RequiresApi(Build.VERSION_CODES.O)
