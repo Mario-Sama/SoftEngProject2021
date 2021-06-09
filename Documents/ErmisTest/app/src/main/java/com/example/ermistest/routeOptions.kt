@@ -18,18 +18,23 @@ class routeOptions : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_route_options)
 
-        val intent = getIntent()
-        val vehicle = intent.getStringExtra("Vehicle")
-
+       // val intent = getIntent()
+        //val routeOption = intent.getStringExtra("RouteOption")
+        val routeOption = ""
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup2)
         val selectOptionRoute = findViewById<Button>(R.id.buttonSelectOptionRoute)
         val optionSafe = findViewById<RadioButton>(R.id.buttonSafe)
         val optionFast = findViewById<RadioButton>(R.id.buttonFast)
         var check = false
-        val time = LocalTime.now()
-        var locationLongtitude = 0
-        var locationLatitude = 0
-        var routeOption = ""
+        var vehicle = transport.none
+        val startTime = LocalTime.now()
+        val destinationTime = LocalTime.now()
+        var locationLongitude : Float = 0f
+        var locationLatitude : Float = 0f
+        var destinationLatitude : Float = 1f
+        var destinationLongitude : Float = 1f
+        var startStationLongitude : Float = 0f
+        var startStationLatitude : Float = 0f
 
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             var rb = findViewById<RadioButton>(i)
@@ -37,25 +42,110 @@ class routeOptions : AppCompatActivity() {
                 check = true
         }
         optionSafe.setOnClickListener {
-            routeOption = "safe"
+            vehicle = transport.bikeOrByFoot
         }
         optionFast.setOnClickListener {
-            routeOption = "fast"
+            vehicle = transport.car
         }
         selectOptionRoute.setOnClickListener {
             if (!check) {
                 val toast1 = Toast.makeText(
                     applicationContext,
-                    "Please activity_select_vehicle_interface.xml an option.",
+                    "Please select an option.",
                     Toast.LENGTH_LONG
                 )
                 toast1.setGravity(Gravity.CENTER, 0, 0)
                 toast1.show()
             }
             else {
+                if (routeOption == "safe") {
+                    var route = SafeRoute(
+                        startLongitute = startStationLongitude,
+                        startLatitude = startStationLatitude,
+                        destinationLongitute = destinationLongitude,
+                        destinationLatitude = destinationLongitude,
+                        transportMeans = transport.MMM,
+                        startTime = startTime,
+                        endTime = destinationTime,
+                        MMMInfo = "732"
+                    )
+                    val toast1 = Toast.makeText(
+                        applicationContext,
+                        "safe MMM.",
+                        Toast.LENGTH_LONG
+                    )
+                    toast1.setGravity(Gravity.CENTER, 0, 0)
+                    toast1.show()
+                }
+                else if (routeOption == "fast") {
+                    var route = FastRoute(
+                        startLongitute = startStationLongitude,
+                        startLatitude = startStationLatitude,
+                        destinationLongitute = destinationLongitude,
+                        destinationLatitude = destinationLatitude,
+                        transportMeans = transport.MMM,
+                        startTime = startTime,
+                        endTime = destinationTime,
+                        MMMInfo = "732"
+                    )
+                    val toast1 = Toast.makeText(
+                        applicationContext,
+                        "fast MMM.",
+                        Toast.LENGTH_LONG
+                    )
+                    toast1.setGravity(Gravity.CENTER, 0, 0)
+                    toast1.show()
+                }
+                if (vehicle == transport.bikeOrByFoot) {
+                    if (routeOption == "safe") {
+                        var route = SafeRoute(
+                            startLongitute = locationLongitude,
+                            startLatitude = locationLatitude,
+                            destinationLongitute = startStationLongitude,
+                            destinationLatitude = startStationLatitude,
+                            transportMeans = transport.bikeOrByFoot,
+                            startTime = startTime,
+                            endTime = destinationTime,
+                            MMMInfo = ""
+                        )
+                        val toast1 = Toast.makeText(
+                            applicationContext,
+                            "safe and bike.",
+                            Toast.LENGTH_LONG
+                        )
+                        toast1.setGravity(Gravity.CENTER, 0, 0)
+                        toast1.show()
+                    }
+                    else if (routeOption == "fast") {
+                        var route = FastRoute(
+                            startLongitute = locationLongitude,
+                            startLatitude = locationLatitude,
+                            destinationLongitute = startStationLongitude,
+                            destinationLatitude = startStationLatitude,
+                            transportMeans = transport.bikeOrByFoot,
+                            startTime = startTime,
+                            endTime = destinationTime,
+                            MMMInfo = ""
+                        )
+                        val toast1 = Toast.makeText(
+                            applicationContext,
+                            "fast and bike.",
+                            Toast.LENGTH_LONG
+                        )
+                        toast1.setGravity(Gravity.CENTER, 0, 0)
+                        toast1.show()
+                    }
+                    else {
+                        val toast1 = Toast.makeText(
+                            applicationContext,
+                            "Something went wrong.",
+                            Toast.LENGTH_LONG
+                        )
+                        toast1.setGravity(Gravity.CENTER, 0, 0)
+                        toast1.show()
+                    }
+                }
                 val intent = Intent(this, routeOptions::class.java)
-                intent.putExtra("Vehicle", vehicle)
-                intent.putExtra("RouteOption", routeOption)
                 startActivity(intent)
             }
         }

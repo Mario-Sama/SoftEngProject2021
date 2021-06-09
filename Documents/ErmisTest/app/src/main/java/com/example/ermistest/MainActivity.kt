@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import java.time.LocalDate
+import java.time.LocalTime
 
  class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -55,27 +56,28 @@ import java.time.LocalDate
             toast1.show()
         }
         goNav.setOnClickListener {
-            val intent = Intent(this, selectVehicleInterface::class.java)
+            val intent = Intent(this, routeOptions::class.java)
             startActivity(intent)
         }
     }
 }
-
-open class Route {
+ enum class transport
+ {
+     MMM,
+     bikeOrByFoot,
+     car,
+     none
+ }
+open abstract class Route() {
     val startLongitute : Float? = null
     val startLatitude : Float? = null
-    val destinationLongitute : Float? = null
+    val destinationLongtitute : Float? = null
     val destinationLatitude : Float? = null
     var routePoints : Array<Float>? = null
-    enum class transportMeans
-    {
-        MMM,
-        bikeOrByFoot,
-        car
-    }
-    val startTime : Int? = null
-    val endTime : Int? = null
-    val MMMInfo : Int? = null
+    var transportMeans : Enum<transport>? = null
+    val startTime : LocalTime? = null
+    val endTime : LocalTime? = null
+    val MMMInfo : String? = null
 
     fun calculateTimetable (startingTime: Int, routePoints: Array<Float>): Int
     {
@@ -100,7 +102,8 @@ open class Route {
         println("navigate")
     }
 }
-class SafeRoute : Route() {
+class SafeRoute(startLongitute: Float, startLatitude: Float, destinationLongitute: Float, destinationLatitude: Float,
+                transportMeans: Enum<transport>, startTime: LocalTime, endTime: LocalTime, MMMInfo: String) : Route() {
     fun calculateSafeRoute (startLatitude: Float, startLongitute: Float, destinationLatitude: Float, destinationLongitute: Float, transportMeans: String): Array<Float>
     {
         val safeRoute = arrayOf<Float>(10.1f, 20.2f, 30.3f, 40.4f)
@@ -108,7 +111,8 @@ class SafeRoute : Route() {
         return safeRoute;
     }
 }
-class FastRoute : Route() {
+class FastRoute(startLongitute: Float, startLatitude: Float, destinationLongitute: Float, destinationLatitude: Float,
+                transportMeans: Enum<transport>, startTime: LocalTime, endTime: LocalTime, MMMInfo: String) : Route() {
     fun calculateFastRoute (startLatitude: Float, startLongitute: Float, destinationLatitude: Float, destinationLongitute: Float, transportMeans: String): Array<Float>
     {
         val fastRoute = arrayOf<Float>(10.1f, 20.2f, 30.3f, 40.4f)
