@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.pandaemon.GuidelinesSoloInterface
-
-
+import com.example.pandaemon.ui.GuidelinesSoloInterface
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,14 +33,11 @@ class MainActivity : AppCompatActivity() {
         }
 */
 
-        val delete = findViewById<Button>(R.id.deleteit)
-       delete.setOnClickListener {
+        val deletes = findViewById<Button>(R.id.deleteit)
+       deletes.setOnClickListener {
             val intent = Intent(this, GuidelinesSoloInterface::class.java)
             startActivity(intent)
        }
-
-
-
 
 
     }
