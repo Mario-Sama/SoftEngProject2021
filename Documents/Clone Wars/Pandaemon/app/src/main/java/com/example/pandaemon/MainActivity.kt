@@ -14,6 +14,7 @@ import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,19 +31,25 @@ class MainActivity : AppCompatActivity() {
         "location" to GeoPoint(35.000,21.000)
     )
     init {
-        db.collection("heatpoints")
+        /*db.collection("heatpoints")
             .add(data1)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
-                print("peos")
-            }
+            }*/
         val docRef = db.collection("heatpoints").document("G57odtzaQuMlLFDbinF1")
         docRef.get().addOnSuccessListener { documentSnapshot ->
             val heatpoint1 = documentSnapshot.toObject<Heatpoints>()
+            if (heatpoint1 != null) {
+                print("THE POINT LOCATION $heatpoint1.location")
+                print(heatpoint1.Duration)
+                print(heatpoint1.timeRecorded)
+                heatTest.text= heatpoint1.location.longitude.toString()
+            }
         }
+
     }
 
 

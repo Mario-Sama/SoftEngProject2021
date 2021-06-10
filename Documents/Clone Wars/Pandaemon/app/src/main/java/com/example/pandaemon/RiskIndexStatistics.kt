@@ -1,5 +1,7 @@
 package com.example.pandaemon
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.math.pow
@@ -11,7 +13,7 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
                           var reviewAverage: Double= 0.0 ,var heatpointRating: Double= 0.0,
                           var livePopRating: Double=0.0){
 
-
+    val db = Firebase.firestore
     var riskIndex= 0.0
     var noOfParameters= 0
     var hasReviews: Boolean= _hasReviews
@@ -66,6 +68,22 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
         // distance= sqrt( (locationLat-pointLat)^2 + (((locationLong-pointLong)*0.75)^2))
         var aggregatedDanger= 0.0    //danger of every relevant point aggregates here
         var distance: Double
+
+        db.collection("heatpoints")
+            .whereLessThanOrEqualTo("location.latitude", locationLatitude+ 0.005)
+            .whereLessThanOrEqualTo("location.longitude", locationLongitude+ 0.005)
+            .whereGreaterThanOrEqualTo("location.latitude", locationLatitude- 0.005)
+            .whereGreaterThanOrEqualTo("location.longitude", locationLongitude- 0.005)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents: ", exception)
+            }
+
         val heatpointList = MutableList(10) {
             listOf(14.556600, 38.009989, 4,1)  //latitude, longitude, duration in minutes, age in days
             listOf(14.556600, 38.009989, 4,2)
@@ -86,7 +104,7 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
             var pointDuration= heatpointList[repCounter][2]
             var days= heatpointList[repCounter][3] as Int
             println("$pointLatitude")
-            distance= sqrt((locationLongitude - pointLongitude).pow(2.0) +((locationLatitude - pointLatitude)*0.75).pow(2.0))
+            distance= sqrt((locationLatitude - pointLatitude).pow(2.0) +((locationLongitude - pointLongitude)*0.75).pow(2.0))
             println(distance)
 
 
