@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GuidelinesSoloInterface">
+    tools:context=".ui.GuidelinesSoloInterface">
 
     <WebView
         android:id="@+id/wb_webView3"

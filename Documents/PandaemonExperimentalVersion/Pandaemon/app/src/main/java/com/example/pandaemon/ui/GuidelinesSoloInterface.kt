@@ -1,14 +1,13 @@
-package com.example.pandaemon
+package com.example.pandaemon.ui
 
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
-import com.example.pandaemon.R
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_google_form.*
 import kotlinx.android.synthetic.main.activity_guidelines_solo_interface.*
+import com.example.pandaemon.R
 
 class GuidelinesSoloInterface : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -31,6 +30,6 @@ class GuidelinesSoloInterface : AppCompatActivity() {
 
     }
     override fun onBackPressed() {
-        if(wb_webView.canGoBack()) wb_webView.goBack() else super.onBackPressed()
+        if(wb_webView3.canGoBack()) wb_webView3.goBack() else super.onBackPressed()
     }
 }
