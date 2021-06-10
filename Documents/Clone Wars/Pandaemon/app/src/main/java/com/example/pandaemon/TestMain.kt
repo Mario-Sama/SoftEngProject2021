@@ -1,7 +1,14 @@
 package com.example.pandaemon
 
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 
 fun main() {
+    //val db= Firebase.firestore
+   // val heatpoints = db.collection("heatpoints")
     val ri1= RiskIndexStatistics("scrap", _hasHeatpoints = true, noOfReviews = 7)
     ri1.hasReviews= true
     ri1.hasHeatpoints= false
@@ -16,5 +23,12 @@ fun main() {
     param1.hasReviews=false
     ri1.calculateRiskIndex()
 
+
+  /*  val data1 = hashMapOf(
+        "duration" to 15,
+        "timeRecorded" to FieldValue.serverTimestamp(),
+        "location" to GeoPoint(35.000,21.000),
+    )
+    heatpoints.document("heatpointuploadtest").set(data1) */
 
 }

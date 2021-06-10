@@ -1,5 +1,7 @@
 package com.example.pandaemon
 
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -8,6 +10,7 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
                           var reviewsSufficient: Boolean=true,var noOfReviews: Int= 0,
                           var reviewAverage: Double= 0.0 ,var heatpointRating: Double= 0.0,
                           var livePopRating: Double=0.0){
+
 
     var riskIndex= 0.0
     var noOfParameters= 0

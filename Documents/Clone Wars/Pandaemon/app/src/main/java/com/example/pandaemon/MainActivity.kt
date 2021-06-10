@@ -9,14 +9,43 @@ import android.view.MenuItem
 import android.widget.Button
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
+    val db = Firebase.firestore
     private companion object{
         private const val TAG="MainActivity"
     }
     private lateinit var auth: FirebaseAuth
+
+    val heatpoints= db.collection("heatpoints")
+    val data1 = hashMapOf(
+        "duration" to 15,
+        "timeRecorded" to FieldValue.serverTimestamp(),
+        "location" to GeoPoint(35.000,21.000)
+    )
+    init {
+        db.collection("heatpoints")
+            .add(data1)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+                print("peos")
+            }
+        val docRef = db.collection("heatpoints").document("G57odtzaQuMlLFDbinF1")
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val heatpoint1 = documentSnapshot.toObject<Heatpoints>()
+        }
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,4 +87,11 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    /*val data1 = hashMapOf(
+        "duration" to 15,
+        "timeRecorded" to FieldValue.serverTimestamp(),
+        "location" to GeoPoint(35.000,21.000))*/
+
+
+
 }
