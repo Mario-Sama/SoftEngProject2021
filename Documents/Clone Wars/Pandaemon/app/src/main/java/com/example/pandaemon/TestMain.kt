@@ -1,13 +1,16 @@
 package com.example.pandaemon
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun main() {
-    //val db= Firebase.firestore
+    val db= Firebase.firestore
    // val heatpoints = db.collection("heatpoints")
     val ri1= RiskIndexStatistics("scrap", _hasHeatpoints = true, noOfReviews = 7)
     ri1.hasReviews= true
