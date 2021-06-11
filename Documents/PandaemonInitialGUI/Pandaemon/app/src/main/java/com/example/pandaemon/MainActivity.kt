@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
             val staysafebutton = findViewById<Button>(R.id.staysafebutton)
             staysafebutton.setOnClickListener {
-                val intent = Intent(this, Drawer::class.java)
+                val intent = Intent(this, Map::class.java)
                 startActivity(intent)
             }
 

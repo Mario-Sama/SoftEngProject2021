@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.map.MapFragment">
+    tools:context=".Map">
 
     <TextView
         android:id="@+id/text_map"
@@ -19,5 +19,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        />
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapview"
+        tilesource="Mapnik"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
