@@ -5,17 +5,9 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
-import java.sql.Timestamp
 import java.time.Instant
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import java.time.temporal.Temporal
-import java.time.temporal.TemporalUnit
-import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -62,7 +54,7 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
     fun calculateRiskIndex(){
         if (!hasReviews) reviewAverage=0.0
         if (!hasHeatpoints) heatpointRating=0.0
-        else if (hasHeatpoints) calculateHeatpointRating(0.0, 0.0)
+        else if (hasHeatpoints) heatpointRating= calculateHeatpointRating(38.246275, 21.735079)
         if (!hasLivePop) livePopRating=0.0
         if (noOfParameters!= 0)
             riskIndex= (reviewAverage+livePopRating+heatpointRating)/noOfParameters
@@ -72,8 +64,8 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
         println(hasReviews)
         println(hasHeatpoints)
         println(hasLivePop)
-        calculateHeatpointRating(14.558600, 38.008989)
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun calculateHeatpointRating(locationLatitude: Double, locationLongitude: Double): Double {
         //NORMALLY SELECTS HEATPOINTS FROM THE DATABASE BY COMPARING POINT COORDINATES WITH USER'S
@@ -82,74 +74,42 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
         //two latitudes denotes approximate 100 meters of distance. For a latitude of 37N (average
         // of Greece), a difference of 0.001 is instead roughly 75 meters of distance.
         // distance= sqrt( (locationLat-pointLat)^2 + (((locationLong-pointLong)*0.75)^2))
-        var aggregatedDanger= 0.0    //danger of every relevant point aggregates here
+        var aggregatedDanger = 0.0 //danger of every relevant point aggregates here
         var distance: Double
-
+        var querycompleted= false
         db.collection("heatpoints")
-            .whereLessThanOrEqualTo("location.latitude", locationLatitude+ 0.005)
-            .whereLessThanOrEqualTo("location.longitude", locationLongitude+ 0.005)
-            .whereGreaterThanOrEqualTo("location.latitude", locationLatitude- 0.005)
-            .whereGreaterThanOrEqualTo("location.longitude", locationLongitude- 0.005)
+            //.whereLessThanOrEqualTo("location.latitude", locationLatitude+ 0.005)
+            //.whereGreaterThanOrEqualTo("location.latitude", locationLatitude- 0.005)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
-                    val heatpoint1 = document.toObject<Heatpoints>()
-                    val distance = sqrt((locationLatitude -heatpoint1.location.latitude).pow(2.0)
-                            +((locationLongitude - heatpoint1.location.longitude)*0.75).pow(2.0))
-                    var threeDaysAgo= Instant.now().minus(3, ChronoUnit.DAYS)
-                    var seconds= threeDaysAgo.epochSecond
-                    var nanos= threeDaysAgo.nano
-                    var secondstamp= com.google.firebase.Timestamp(seconds,nanos)
-                    if (distance< 0.005 && heatpoint1.Duration>0 && heatpoint1.timeRecorded.compareTo(secondstamp)>0 ){
+                    var heatpoint1 = document.toObject(Heatpoints::class.java)
+                    println("HEATPOINT LOCATION IS " + heatpoint1.location)
+                    val distance = sqrt(
+                        (locationLatitude - heatpoint1.location.latitude).pow(2.0)
+                                + ((locationLongitude - heatpoint1.location.longitude) * 0.75).pow(
+                            2.0
+                        )
+                    )
+                    println(distance)
+                    var threeDaysAgo = Instant.now().minus(3, ChronoUnit.DAYS)
+                    var seconds = threeDaysAgo.epochSecond
+                    var nanos = threeDaysAgo.nano
+                    var secondstamp = com.google.firebase.Timestamp(seconds, nanos)
+                    if (distance < 0.005) {
                         aggregatedDanger++
+                        println(aggregatedDanger)
                     }
                 }
+               querycompleted= true
             }
-
+            //&& heatpoint1.Duration>0 && heatpoint1.timeRecorded.compareTo(secondstamp)>0
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
-        val heatpointRisk= min(10.0, aggregatedDanger)
-        return heatpointRisk
 
-
-       /* val heatpointList = MutableList(10) {
-            listOf(14.556600, 38.009989, 4,1)  //latitude, longitude, duration in minutes, age in days
-            listOf(14.556600, 38.009989, 4,2)
-            listOf(14.556600, 38.009989, 4,3)
-            listOf(14.556600, 38.009989, 4,4)
-            listOf(14.556600, 38.009989, 4,7)
-            listOf(14.556600, 38.009989, 4,14)
-            listOf(14.556600, 38.009989, 4,1)
-            listOf(14.556600, 38.009989, 4,1)
-            listOf(14.556600, 38.009989, 4,1)
-            listOf(14.556600, 38.009989, 4,1)
-
-        }
-        var repCounter=0
-        heatpointList.forEach{
-            var pointLatitude= heatpointList[repCounter][0] as Double
-            var pointLongitude= heatpointList[repCounter][1] as Double
-            var pointDuration= heatpointList[repCounter][2]
-            var days= heatpointList[repCounter][3] as Int
-            println("$pointLatitude")
-            distance= sqrt((locationLatitude - pointLatitude).pow(2.0) +((locationLongitude - pointLongitude)*0.75).pow(2.0))
-            println(distance)
-
-
-            if (distance<0.005 && days<4) { //minimum requirements to consider something a threat, a distance of less than 500 meters, up to three days prior
-               if (distance< 0.001){
-                   aggregatedDanger+=3  //a case this close to the area, regardless of other parameters, always poses high risk
-                   if (days<2) {
-                       aggregatedDanger += 2
-                   }
-               }
-
-            }
-            repCounter++
-
-        }*/
-
+        if (querycompleted) {return min(10.0, aggregatedDanger)}
+        return min(10.0, aggregatedDanger)
     }
 }

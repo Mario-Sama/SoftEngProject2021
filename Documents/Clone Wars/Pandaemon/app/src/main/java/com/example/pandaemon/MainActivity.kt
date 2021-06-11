@@ -1,12 +1,14 @@
 package com.example.pandaemon
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -17,40 +19,13 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : AppCompatActivity() {
     val db = Firebase.firestore
     private companion object{
         private const val TAG="MainActivity"
     }
     private lateinit var auth: FirebaseAuth
-
-    val heatpoints= db.collection("heatpoints")
-    val data1 = hashMapOf(
-        "duration" to 15,
-        "timeRecorded" to FieldValue.serverTimestamp(),
-        "location" to GeoPoint(35.000,21.000)
-    )
-    init {
-        /*db.collection("heatpoints")
-            .add(data1)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }*/
-        val docRef = db.collection("heatpoints").document("G57odtzaQuMlLFDbinF1")
-        docRef.get().addOnSuccessListener { documentSnapshot ->
-            val heatpoint1 = documentSnapshot.toObject<Heatpoints>()
-            if (heatpoint1 != null) {
-                print("THE POINT LOCATION $heatpoint1.location")
-                print(heatpoint1.Duration)
-                print(heatpoint1.timeRecorded)
-                heatTest.text= heatpoint1.location.longitude.toString()
-            }
-        }
-
-    }
 
 
 
@@ -65,19 +40,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-            val staysafebutton = findViewById<Button>(R.id.staysafebutton)
+        val staysafebutton = findViewById<Button>(R.id.staysafebutton)
             staysafebutton.setOnClickListener {
                 val intent = Intent(this, Drawer::class.java)
                 startActivity(intent)
             }
-
-
-        val deletebtn = findViewById<Button>(R.id.deleteit)
-        deletebtn.setOnClickListener {
-            val intent = Intent(this, GuidelinesSoloInterface::class.java)
-            startActivity(intent)
-        }
-
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
         menuInflater.inflate(R.menu.drawer, menu)
@@ -94,10 +61,6 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    /*val data1 = hashMapOf(
-        "duration" to 15,
-        "timeRecorded" to FieldValue.serverTimestamp(),
-        "location" to GeoPoint(35.000,21.000))*/
 
 
 
