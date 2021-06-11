@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "809472697288",
+    "project_id": "pandaemon-ea884",
+    "storage_bucket": "pandaemon-ea884.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809472697288:android:4c2a4a272e530753d596fd",
+        "android_client_info": {
+          "package_name": "com.example.pandaemon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809472697288-qhfl0emlp1qbtgtp8d9rs6o27oodl3a3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pandaemon",
+            "certificate_hash": "e633b53818a2f0c5e176bf53ed8ddd2b4e3d0bac"
+          }
+        },
+        {
+          "client_id": "809472697288-r2mlhr4461rialk7nr2on1b9utvefuei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGr5NP5PsO7mX9nGXZVsTkYdcFZPyXbk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809472697288-r2mlhr4461rialk7nr2on1b9utvefuei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
