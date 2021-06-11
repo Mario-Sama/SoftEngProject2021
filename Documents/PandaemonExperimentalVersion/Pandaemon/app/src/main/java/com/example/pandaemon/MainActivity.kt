@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.pandaemon.ui.GuidelinesSoloInterface
+import com.example.pandaemon.ui.NewsSoloInterface
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         val deletes = findViewById<Button>(R.id.deleteit)
        deletes.setOnClickListener {
-            val intent = Intent(this, GuidelinesSoloInterface::class.java)
+            val intent = Intent(this, NewsSoloInterface::class.java)
             startActivity(intent)
        }
 

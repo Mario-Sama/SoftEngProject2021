@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pandaemon">
-        <activity android:name=".ui.GuidelinesSoloInterface"></activity>
+        <activity android:name=".ui.NewsSoloInterface"></activity>
+        <activity android:name=".ui.GuidelinesSoloInterface" />
         <activity android:name=".SafetyReviewInterface" />
         <activity android:name=".selectVehicleInterface" />
         <activity android:name=".routeOptions" />
