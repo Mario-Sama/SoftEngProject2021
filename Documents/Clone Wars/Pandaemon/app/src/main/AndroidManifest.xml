@@ -16,17 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pandaemon">
-        <activity android:name=".routeOptions" />
-        <activity android:name=".AppointmentsSuggestions" />
+        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".RouteOptions" />
+        <activity android:name=".SelectVehicleInterface" />
         <activity android:name=".ui.GoogleForm" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
         <activity
             android:name=".Drawer"
             android:label="@string/title_activity_drawer"
@@ -35,6 +28,7 @@
             android:name=".UploadDataWindow"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity"/>
+        <activity android:name=".SearchLocation"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
