@@ -10,6 +10,7 @@ import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 
 import java.util.ArrayList
 
@@ -40,6 +41,11 @@ class Map : AppCompatActivity() {
         mapController.setZoom(18.0)
         val startPoint = GeoPoint(38.246639, 21.734573);
         mapController.setCenter(startPoint);
+        val startMarker = Marker(map)
+        startMarker.setPosition(startPoint)
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+        map?.getOverlays()?.add(startMarker)
+        startMarker.title = "38.246639, 21.734573"
     }
 
     override fun onResume() {
