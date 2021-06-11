@@ -56,8 +56,8 @@
     <fragment
         android:id="@+id/appointmentSuggestionsFragment"
         android:name="com.example.pandaemon.AppointmentSuggestionsFragment"
-        android:label="fragment_appointment_suggestions"
-        tools:layout="@layout/fragment_appointment_suggestions" >
+        android:label="Προτεινόμενα Νοσοκομεία"
+        tools:layout="@layout/fragment_appointment_suggestions">
         <action
             android:id="@+id/action_appointmentSuggestionsFragment_to_vaccinationAppointment"
             app:destination="@id/vaccinationAppointment" />

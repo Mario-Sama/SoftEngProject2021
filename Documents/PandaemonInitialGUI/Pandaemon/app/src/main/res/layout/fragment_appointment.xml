@@ -4,20 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.appointment.AppointmentFragment">
+    tools:context=".ui.appointment.AppointmentFragment"
+    android:background="#EDCFE1">
 
     <TextView
         android:id="@+id/text_appointment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="366dp"
+        android:layout_height="121dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="monospace"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="16sp"
+        android:text="Υπολογίζουμε προτιμέστερη Νοσοκομειακή Μονάδα βάσει της Τοποθεσίας σου . . ."
         android:textAlignment="center"
         android:textSize="20sp"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal" />
+        app:layout_constraintVertical_bias="0.035" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="104dp"
+        android:layout_height="89dp"
+        android:src="@drawable/custom_map_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_appointment"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="387dp"
+        android:layout_height="193dp"
+        android:layout_marginTop="36dp"
+        android:lineSpacingExtra="8sp"
+        android:text="Φαίνεται πως βρίσκεσαι στην Τοποθεσία Πάτρα. Σωστά; Αν χρησιμοποιείς κάποιο vpn καλό είναι να το απενεργοποιήσεις,αλλιώς η διαδικασία δεν θα εξυπηρετεί το σκοπό της. "
+        android:textSize="18sp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/custom_button"
+        android:text="Ναι"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/no"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/custom_button"
+        android:text="ΟΧΙ"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

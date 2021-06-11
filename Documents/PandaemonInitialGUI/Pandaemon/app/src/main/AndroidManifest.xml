@@ -16,10 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pandaemon">
-        <activity
-            android:name=".Map"
-            android:label="Map"
-            android:theme="@style/Theme.Pandaemon.NoActionBar" />
+        <activity android:name=".ui.NewsSoloInterface"></activity>
+        <activity android:name=".ui.GuidelinesSoloInterface" />
+        <activity android:name=".SafetyReviewInterface" />
+        <activity android:name=".selectVehicleInterface" />
+        <activity android:name=".routeOptions" />
+        <activity android:name=".ui.GoogleForm" />
         <activity
             android:name=".Drawer"
             android:label="@string/title_activity_drawer"
@@ -34,6 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Map"
+            android:label="Map"
+            android:theme="@style/Theme.Pandaemon.NoActionBar" />
     </application>
 
 </manifest>
