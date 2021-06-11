@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_map">
+
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.pandaemon.ui.map.MapFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/nav_destination"
+        android:name="com.example.pandaemon.ui.destination.DestinationFragment"
+        android:label="@string/menu_destination"
+        tools:layout="@layout/fragment_destination" />
+
+    <fragment
+        android:id="@+id/nav_appointment"
+        android:name="com.example.pandaemon.ui.appointment.AppointmentFragment"
+        android:label="@string/menu_appointment"
+        tools:layout="@layout/fragment_appointment" >
+        <action
+            android:id="@+id/action_nav_appointment_to_appointmentSuggestionsFragment"
+            app:destination="@id/appointmentSuggestionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.example.pandaemon.ui.news.NewsFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/nav_guidelines"
+        android:name="com.example.pandaemon.ui.guidelines.GuidelinesFragment"
+        android:label="@string/menu_guidelines"
+        tools:layout="@layout/fragment_guidelines" />
+    <fragment
+        android:id="@+id/appointmentviaApp"
+        android:name="com.example.pandaemon.AppointmentviaApp"
+        android:label="fragment_appointmentvia_app"
+        tools:layout="@layout/fragment_appointmentvia_app" />
+    <fragment
+        android:id="@+id/vaccinationAppointment"
+        android:name="com.example.pandaemon.VaccinationAppointment"
+        android:label="fragment_vaccination_appointment"
+        tools:layout="@layout/fragment_vaccination_appointment" />
+    <fragment
+        android:id="@+id/appointmentviaPhone"
+        android:name="com.example.pandaemon.AppointmentviaPhone"
+        android:label="fragment_appointmentvia_phone"
+        tools:layout="@layout/fragment_appointmentvia_phone" />
+    <fragment
+        android:id="@+id/appointmentSuggestionsFragment"
+        android:name="com.example.pandaemon.AppointmentSuggestionsFragment"
+        android:label="Προτεινόμενα Νοσοκομεία"
+        tools:layout="@layout/fragment_appointment_suggestions">
+        <action
+            android:id="@+id/action_appointmentSuggestionsFragment_to_vaccinationAppointment"
+            app:destination="@id/vaccinationAppointment" />
+        <action
+            android:id="@+id/action_appointmentSuggestionsFragment_to_appointmentviaApp"
+            app:destination="@id/appointmentviaApp" />
+        <action
+            android:id="@+id/action_appointmentSuggestionsFragment_to_appointmentviaPhone"
+            app:destination="@id/appointmentviaPhone" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectVehicleInterfaceFragment"
+        android:name="com.example.pandaemon.selectVehicleInterfaceFragment"
+        android:label="fragment_select_vehicle_interface"
+        tools:layout="@layout/fragment_select_vehicle_interface" />
+</navigation>

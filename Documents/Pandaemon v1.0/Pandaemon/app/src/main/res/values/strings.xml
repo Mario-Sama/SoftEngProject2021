@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Pandaemon</string>
+    <string name="title_activity_drawer">Drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_map">Map</string>
+    <string name="menu_destination">Find a destination</string>
+    <string name="menu_appointment">Appointment</string>
+    <string name="menu_news">Pandemic News</string>
+    <string name="menu_guidelines">Pandemic Guidelines</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+	
+	<string-array name="stores_array">
+        <item>Makina</item>
+        <item>Talks</item>
+        <item>Prego</item>
+        <item>Banana Moon</item>
+        <item>Rubiks Superfood and Coffee</item>
+        <item>Poirot Cafe Patras</item>
+        <item>Poikili Stoa</item>
+        <item>Big Ben</item>
+        <item>Bodegas Restaurant Wine Bar and coffee</item>
+        <item>Stis giagias</item>
+        <item>Nagu Coffee and Spirits</item>
+        <item>Distintomall</item>
+        <item>Coffee Island</item>
+        <item>Due Piani</item>
+        <item>Blossom</item>
+        <item>TAMTOOM</item>
+        <item>Cuccuvaia</item>
+        <item>Tag</item>
+        <item>Meno-18</item>
+        <item>Faros Cafe</item>
+        <item>Papillon</item>
+        <item>Coffee Brands</item>
+        <item>Loukoumam</item>
+        <item>Chutney</item>
+        <item>Bara</item>
+        <item>Abraco</item>
+        <item>Libido All Day Cafe Bar</item>
+        <item>Coffee Island</item>
+        <item>Coffee Island</item>
+    </string-array>
+</resources>
