@@ -1,9 +1,22 @@
 package com.example.pandaemon
 
 import android.content.ContentValues.TAG
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_main.*
+import java.sql.Timestamp
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import java.time.temporal.Temporal
+import java.time.temporal.TemporalUnit
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -45,9 +58,11 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
         if (hasReviews && reviewsSufficient) noOfParameters++
         if (hasLivePop) noOfParameters++
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun calculateRiskIndex(){
         if (!hasReviews) reviewAverage=0.0
         if (!hasHeatpoints) heatpointRating=0.0
+        else if (hasHeatpoints) calculateHeatpointRating(0.0, 0.0)
         if (!hasLivePop) livePopRating=0.0
         if (noOfParameters!= 0)
             riskIndex= (reviewAverage+livePopRating+heatpointRating)/noOfParameters
@@ -59,7 +74,8 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
         println(hasLivePop)
         calculateHeatpointRating(14.558600, 38.008989)
     }
-    fun calculateHeatpointRating(locationLatitude: Double, locationLongitude: Double){
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun calculateHeatpointRating(locationLatitude: Double, locationLongitude: Double): Double {
         //NORMALLY SELECTS HEATPOINTS FROM THE DATABASE BY COMPARING POINT COORDINATES WITH USER'S
         //NO DATABASE FUNCTIONALITY CURRENTLY, SO here's a dummy heatpoint array
         // In gmaps geolocation coordinates (values from -100 to 100), a difference of 0.001 between
@@ -78,13 +94,27 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
+                    val heatpoint1 = document.toObject<Heatpoints>()
+                    val distance = sqrt((locationLatitude -heatpoint1.location.latitude).pow(2.0)
+                            +((locationLongitude - heatpoint1.location.longitude)*0.75).pow(2.0))
+                    var threeDaysAgo= Instant.now().minus(3, ChronoUnit.DAYS)
+                    var seconds= threeDaysAgo.epochSecond
+                    var nanos= threeDaysAgo.nano
+                    var secondstamp= com.google.firebase.Timestamp(seconds,nanos)
+                    if (distance< 0.005 && heatpoint1.Duration>0 && heatpoint1.timeRecorded.compareTo(secondstamp)>0 ){
+                        aggregatedDanger++
+                    }
                 }
             }
+
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
+        val heatpointRisk= min(10.0, aggregatedDanger)
+        return heatpointRisk
 
-        val heatpointList = MutableList(10) {
+
+       /* val heatpointList = MutableList(10) {
             listOf(14.556600, 38.009989, 4,1)  //latitude, longitude, duration in minutes, age in days
             listOf(14.556600, 38.009989, 4,2)
             listOf(14.556600, 38.009989, 4,3)
@@ -119,7 +149,7 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
             }
             repCounter++
 
-        }
+        }*/
 
     }
 }
