@@ -108,8 +108,6 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
-
-        if (querycompleted) {return min(10.0, aggregatedDanger)}
         return min(10.0, aggregatedDanger)
     }
 }
