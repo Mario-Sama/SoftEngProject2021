@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">ErmisTest</string>
+    <string-array name="countries_array">
+        <item>Makina</item>
+        <item>Talks</item>
+        <item>Prego</item>
+        <item>Banana Moon</item>
+        <item>Rubiks Superfood and Coffee</item>
+        <item>Poirot Cafe Patras</item>
+        <item>Poikili Stoa</item>
+        <item>Big Ben</item>
+        <item>Bodegas Restaurant Wine Bar and coffee</item>
+        <item>Stis giagias</item>
+        <item>Nagu Coffee and Spirits</item>
+        <item>Distintomall</item>
+        <item>Coffee Island</item>
+        <item>Due Piani</item>
+        <item>Blossom</item>
+        <item>TAMTOOM</item>
+        <item>Cuccuvaia</item>
+        <item>Tag</item>
+        <item>Meno-18</item>
+        <item>Faros Cafe</item>
+        <item>Papillon</item>
+        <item>Coffee Brands</item>
+        <item>Loukoumam</item>
+        <item>Chutney</item>
+        <item>Bara</item>
+        <item>Abraco</item>
+        <item>Libido All Day Cafe Bar</item>
+        <item>Coffee Island</item>
+        <item>Coffee Island</item>
+    </string-array>
+</resources>
