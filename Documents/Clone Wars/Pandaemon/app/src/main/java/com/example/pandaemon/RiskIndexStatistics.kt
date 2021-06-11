@@ -93,18 +93,17 @@ class RiskIndexStatistics(val placesId:String, var _hasReviews: Boolean= false,
                         )
                     )
                     println(distance)
-                    var threeDaysAgo = Instant.now().minus(3, ChronoUnit.DAYS)
+                    var threeDaysAgo = Instant.now().minus(3, ChronoUnit.DAYS) //get the instance of three days ago
                     var seconds = threeDaysAgo.epochSecond
                     var nanos = threeDaysAgo.nano
-                    var secondstamp = com.google.firebase.Timestamp(seconds, nanos)
-                    if (distance < 0.005) {
-                        aggregatedDanger++
-                        println(aggregatedDanger)
-                    }
+                    var secondstamp = com.google.firebase.Timestamp(seconds, nanos) //convert it to firebase timestamp to see if data is more than 3 days old
+                    if (distance < 0.005 && heatpoint1.Duration>0 && heatpoint1.timeRecorded.compareTo(secondstamp)>0) {
+                        aggregatedDanger++          // A heatpoint becomes a threat if it is within 0.005 of the location, is at most 3 days late, and the infected
+                        println(aggregatedDanger)   // person idled in the location. For smaller distances, more recent data, and longer idle duration, the aggregated
+                    }                               // danger would increase further
                 }
                querycompleted= true
             }
-            //&& heatpoint1.Duration>0 && heatpoint1.timeRecorded.compareTo(secondstamp)>0
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
