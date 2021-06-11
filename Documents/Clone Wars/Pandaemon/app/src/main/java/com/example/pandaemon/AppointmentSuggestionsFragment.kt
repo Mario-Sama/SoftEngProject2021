@@ -34,6 +34,12 @@ class AppointmentSuggestionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        //val commentsfordoc= root.findViewById<Button>(R.id.commentsfordoc)
+        //commentsfordoc.setOnClickListener {
+        //   findNavController().navigate(R.id.action_nav_appointment_to_appointmentSuggestionsFragment)
+        //  }
+
         return inflater.inflate(R.layout.fragment_appointment_suggestions, container, false)
     }
 
