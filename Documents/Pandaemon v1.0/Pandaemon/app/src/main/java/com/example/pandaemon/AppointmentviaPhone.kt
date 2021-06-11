@@ -20,6 +20,7 @@ class AppointmentviaPhone : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    internal var number:String?=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,12 @@ class AppointmentviaPhone : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_appointmentvia_phone, container, false)
+
+        //callPsychologist.setOnClickListener{
+        //number= numberEt.text.toString().trim()
+        //val intent = Intent(Intent.ACTION_DIAL, Uri.parse ("tel"+ Uri.encode(number)))
+        //startActivity(intnet)
+        //}
     }
 
     companion object {

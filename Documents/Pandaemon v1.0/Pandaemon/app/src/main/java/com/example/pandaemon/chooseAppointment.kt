@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,10 +13,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AppointmentSuggestionsFragment.newInstance] factory method to
+ * Use the [chooseAppointment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AppointmentSuggestionsFragment : Fragment() {
+class chooseAppointment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -37,20 +34,7 @@ class AppointmentSuggestionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_appointment_suggestions, container, false)
-
-        val appoint= root.findViewById<Button>(R.id.button4)
-        appoint.setOnClickListener {
-           findNavController().navigate(R.id.action_appointmentSuggestionsFragment_to_chooseAppointment)
-          }
-
-
-        val commentz= root.findViewById<Button>(R.id.commentsfordoc)
-        commentz.setOnClickListener {
-            findNavController().navigate(R.id.action_appointmentSuggestionsFragment_to_commentsforDoc2)
-        }
-
-        return root
+        return inflater.inflate(R.layout.fragment_choose_appointment, container, false)
     }
 
     companion object {
@@ -60,12 +44,12 @@ class AppointmentSuggestionsFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AppointmentSuggestionsFragment.
+         * @return A new instance of fragment chooseAppointment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AppointmentSuggestionsFragment().apply {
+            chooseAppointment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

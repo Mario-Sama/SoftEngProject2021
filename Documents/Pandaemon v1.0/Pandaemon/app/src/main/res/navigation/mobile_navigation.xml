@@ -59,18 +59,39 @@
         android:label="Προτεινόμενα Νοσοκομεία"
         tools:layout="@layout/fragment_appointment_suggestions">
         <action
-            android:id="@+id/action_appointmentSuggestionsFragment_to_vaccinationAppointment"
-            app:destination="@id/vaccinationAppointment" />
+            android:id="@+id/action_appointmentSuggestionsFragment_to_commentsforDoc2"
+            app:destination="@id/commentsforDoc2" />
         <action
-            android:id="@+id/action_appointmentSuggestionsFragment_to_appointmentviaApp"
-            app:destination="@id/appointmentviaApp" />
-        <action
-            android:id="@+id/action_appointmentSuggestionsFragment_to_appointmentviaPhone"
-            app:destination="@id/appointmentviaPhone" />
+            android:id="@+id/action_appointmentSuggestionsFragment_to_chooseAppointment"
+            app:destination="@id/chooseAppointment" />
     </fragment>
     <fragment
         android:id="@+id/selectVehicleInterfaceFragment"
         android:name="com.example.pandaemon.selectVehicleInterfaceFragment"
         android:label="fragment_select_vehicle_interface"
         tools:layout="@layout/fragment_select_vehicle_interface" />
+    <fragment
+        android:id="@+id/commentsforDoc2"
+        android:name="com.example.pandaemon.commentsforDoc"
+        android:label="Σχόλια προς Ιατρό"
+        tools:layout="@layout/fragment_commentsfor_doc" >
+        <action
+            android:id="@+id/action_commentsforDoc2_to_chooseAppointment"
+            app:destination="@id/chooseAppointment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseAppointment"
+        android:name="com.example.pandaemon.chooseAppointment"
+        android:label="Ραντεβού"
+        tools:layout="@layout/fragment_choose_appointment">
+        <action
+            android:id="@+id/action_chooseAppointment_to_appointmentviaPhone"
+            app:destination="@id/appointmentviaPhone" />
+        <action
+            android:id="@+id/action_chooseAppointment_to_vaccinationAppointment"
+            app:destination="@id/vaccinationAppointment" />
+        <action
+            android:id="@+id/action_chooseAppointment_to_appointmentviaApp"
+            app:destination="@id/appointmentviaApp" />
+    </fragment>
 </navigation>
